@@ -10,6 +10,7 @@ import pay.employee.app.choosebenefit.model.User;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path="/user")
 public class UserController {
 
@@ -41,6 +42,7 @@ public class UserController {
         return helper.getPaycheck(userId);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getAllEmployeePaychecks")
     public @ResponseBody List<Paycheck> getEmployeePaycheck() {
         return helper.getAllEmployeePaychecks();
