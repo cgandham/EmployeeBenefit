@@ -1,6 +1,12 @@
 package pay.employee.app.choosebenefit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+
 public class Paycheck {
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
     Double deductionPerPaycheck;
     Double costPaidAfterDeduction;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pay.employee.app.choosebenefit.Service.IUserService;
 import pay.employee.app.choosebenefit.helpers.UserHelper;
+import pay.employee.app.choosebenefit.model.Dependent;
 import pay.employee.app.choosebenefit.model.Paycheck;
 import pay.employee.app.choosebenefit.model.User;
 
@@ -60,6 +61,11 @@ public class UserController {
         return "User deleted with id: " + user.getId();
     }
 
+    @PostMapping(path = "/addDependent")
+    public @ResponseBody String addUser(@RequestBody Dependent dependent) {
+        userService.addDependent(dependent);
+        return "Dependent added of type: " + dependent.getType() + " for user id: " + dependent.getUserId();
+    }
 
 
 }

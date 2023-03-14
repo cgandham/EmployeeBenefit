@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import pay.employee.app.choosebenefit.utils.Enums;
 
 @Entity
 public class Dependent {
@@ -13,6 +14,7 @@ public class Dependent {
 
     private int userId;
     private String name;
+    private Enums.DependentType type;
 
     public int getId() {
         return id;
@@ -32,5 +34,13 @@ public class Dependent {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Enums.DependentType getType() {
+        return type;
+    }
+
+    public void setType(Enums.DependentType type) {
+        this.type = type;
     }
 }
