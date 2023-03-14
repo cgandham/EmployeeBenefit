@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping(path = "/add")
     public @ResponseBody String addUser(@RequestBody User user) {
         userService.addUser(user);
-        return "User added with role: " + user.getRole();
+        return "User added with role: " + user.getRole() + " and id: " + user.getId();
     }
 
     @GetMapping(path="/getAll")
@@ -46,6 +46,18 @@ public class UserController {
     @GetMapping(path = "/getAllEmployeePaychecks")
     public @ResponseBody List<Paycheck> getEmployeePaycheck() {
         return helper.getAllEmployeePaychecks();
+    }
+
+    @PutMapping (path = "/update")
+    public @ResponseBody String updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return "User added with id: " + user.getId();
+    }
+
+    @DeleteMapping (path = "/delete")
+    public @ResponseBody String deleteUser(@RequestBody User user) {
+        userService.deleteUser(user);
+        return "User deleted with id: " + user.getId();
     }
 
 

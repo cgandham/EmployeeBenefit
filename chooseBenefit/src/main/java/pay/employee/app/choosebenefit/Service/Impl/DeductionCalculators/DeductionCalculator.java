@@ -17,19 +17,17 @@ public class DeductionCalculator implements IDeductionCalculator {
     @Autowired
     private IDiscountCalculator _discountCalculator;
 
-//    public DeductionCalculator(IDiscountCalculator discountCalculator){
-//        _discountCalculator = discountCalculator;
-//    }
-
     @Override
     public Double getDeductionCostPerPaycheck(User user, List<Dependent> dependents) {
         Double deduction = 0.0;
         for(int i=0; i< dependents.size(); i++){
-            if(dependents.get(i).getName().toUpperCase().startsWith("A")){
+            if(dependents.get(i).getName() != null && dependents.get(i).getName().toUpperCase().startsWith("A")){
                 deduction += _discountCalculator.getDiscountedDeductionCost(Enums.UserRole.Dependent)  ;
             }
+            else
+                deduction += Constants.DEPENDENT_DEDUCTION_PER_YEAR;
         }
-        if(user.getName().toUpperCase().startsWith("A"))
+        if(user.getName() != null && user.getName().toUpperCase().startsWith("A"))
            deduction += _discountCalculator.getDiscountedDeductionCost(Enums.UserRole.Employee);
         else
             deduction += Constants.EMPLOYEE_DEDUCTION_PER_YEAR;

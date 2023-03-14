@@ -35,6 +35,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+        return;
+    }
+
+    @Override
     public User getUser(int userId) {
         return userRepository.getReferenceById(userId);
     }
@@ -54,6 +60,13 @@ public class UserServiceImpl implements IUserService {
         List<Dependent> dependents = dependentRepository.findAll().stream()
                                   .filter(x->x.getUserId() == userId).collect(Collectors.toList());
         return dependents;
+    }
+    @Override
+    public User updateUser(User user) {
+//        dependents.forEach(dep ->{
+//            dependentRepository.save(dep);
+//        });
+        return userRepository.save(user);
     }
 
 }
